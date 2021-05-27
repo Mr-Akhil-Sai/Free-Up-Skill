@@ -1,0 +1,315 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.navBar {
+  background: rgb(240, 240, 240);
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  padding: 0 5em;
+  z-index: 2;
+}
+.logo-container {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+.logoLink {
+  text-decoration: none;
+  font-size: 1.8rem;
+  color: rgb(211, 71, 20);
+}
+
+.logo {
+  height: 50%;
+}
+.list {
+  height: 100%;
+  width: 60vw;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.links {
+  text-decoration: none;
+  color: black;
+  font-size: 0.9rem;
+}
+.links:hover {
+  color: rgb(223, 91, 43);
+}
+.login {
+  border-radius: 2rem;
+  padding: 0.2em 1em;
+  border: 1px solid black;
+}
+.login:hover {
+  color: rgb(223, 91, 43);
+}
+
+/*  SECTION 1 */
+
+.section1 {
+  margin-top: 11vh;
+  padding: 0 5em;
+}
+.testHeading {
+  font-size: 1.8rem;
+  width: 7.7em;
+  margin: 0 auto;
+  margin-top: 6rem;
+  border-bottom: 2px solid rgb(211, 71, 20);
+  padding-bottom: 0.1em;
+}
+.parentBox {
+  display: flex;
+  justify-content: space-between;
+  margin: 3em 0;
+}
+.box1,
+.box2,
+.box3 {
+  /* box-shadow: 3px 3px 3px 3px gainsboro; */
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+  width: 350px;
+  height: 380px;
+  border-radius: 0.5rem;
+}
+.todayHeading {
+  font-size: 1.8rem;
+  width: 3.8em;
+  margin: 0 auto;
+  margin-top: 1rem;
+  border-bottom: 2px solid rgb(211, 71, 20);
+  padding-bottom: 0.1em;
+}
+.selfHeading {
+  font-size: 1.8rem;
+  width: 8.5em;
+  margin: 0 auto;
+  margin-top: 0.5em;
+  border-bottom: 2px solid rgb(211, 71, 20);
+  padding-bottom: 0.1em;
+}
+.cardHeading {
+  color: #5f5f5f;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  margin-left: 1rem;
+}
+.cardContent {
+  color: #636363;
+  margin-left: 1rem;
+  text-align: left;
+  font-size: 0.8rem;
+}
+.cardImg {
+  width: 350px;
+  height: 200px;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.button {
+  padding: 0.5rem 2rem;
+  margin: 0.5rem auto;
+  background: none;
+  font-weight: 600;
+  color: whitesmoke;
+  background: black;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.button:hover {
+  color: rgb(211, 71, 20);
+  cursor: pointer;
+}
+.buttonDiv {
+  margin-top: 0.5rem;
+  height: 60px;
+  padding: 0 7rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+/* SECTION 2 */
+
+.section2 {
+  padding: 0 5em;
+  margin-bottom: 2rem;
+}
+.rankHeading {
+  width: 10.2em;
+  font-size: 1.8rem;
+  margin: 1em auto;
+  border-bottom: 2px solid rgb(211, 71, 20);
+}
+.parentBoard {
+  display: flex;
+  width: 100%;
+}
+.childOne {
+  display: flex;
+  margin: 0 auto;
+}
+.aptitudeDiv,
+.sudokuDiv {
+  text-align: left;
+  font-size: 1.3rem;
+  padding: 0.5rem 0;
+}
+.ranksDiv {
+  text-align: right;
+  font-size: 1.3rem;
+  padding: 0.5rem 0;
+}
+.aptitudeHeading {
+  color: rgb(141, 139, 139);
+  /* padding: 0 1rem; */
+  font-size: 1.2rem;
+}
+.sudokuHeading {
+  font-size: 1.2rem;
+  color: rgb(141, 139, 139);
+  padding-left: 2rem;
+}
+.ranksHeading {
+  color: rgb(141, 139, 139);
+  font-size: 1.2rem;
+  margin-left: 9rem;
+}
+.ranks {
+  text-align: left;
+  padding-left: 5px;
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+.sudokuRanks {
+  text-align: left;
+  padding-left: 5px;
+  margin: 0.5rem 0;
+  margin-left: 2rem;
+  font-size: 1.5rem;
+}
+.rank {
+  text-align: right;
+  padding-right: 5px;
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+.bg {
+  background: #f7f7f7;
+}
+
+/* SECTION 3 */
+
+.section3 {
+  padding: 0 5em;
+  height: 30vh;
+}
+.parent {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+.studentDiv {
+  width: 20vw;
+  text-align: center;
+}
+
+.studentHeading {
+  font-size: 1.2rem;
+  color: rgb(141, 139, 139);
+  margin-bottom: 1rem;
+}
+.studentNumbers {
+  padding: 2rem;
+  border-radius: 4rem;
+  font-size: 2.4rem;
+  border: none;
+  background: rgb(7, 213, 240, 0.5);
+}
+.questionNumbers {
+  font-size: 2.4rem;
+  padding: 2rem;
+  border-radius: 4rem;
+  border: none;
+  background: rgb(201, 50, 50, 0.5);
+}
+.testNumbers {
+  font-size: 2.4rem;
+  padding: 2rem;
+  border-radius: 4rem;
+  border: none;
+  background: rgb(71, 204, 44, 0.5);
+}
+.hourNumbers {
+  font-size: 2.4rem;
+  padding: 2rem;
+  border-radius: 4rem;
+  border: none;
+  background: rgb(231, 9, 231, 0.5);
+}
+
+/*         Footer         */
+
+.footer {
+  background: black;
+  color: whitesmoke;
+  padding: 2em 5em;
+}
+.footerParent {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.footerLogo {
+  font-size: 1.8rem;
+}
+.rightMost {
+  width: 40vw;
+  display: flex;
+}
+.company {
+  margin: 0 10rem;
+}
+.rightMostHeading {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.rightMostContent {
+  font-size: 0.9rem;
+  color: rgb(141, 139, 139);
+  margin-bottom: 1rem;
+}
+.end {
+  display: flex;
+}
+.copyright {
+  color: rgb(141, 139, 139);
+  width: 40vw;
+  display: flex;
+  font-size: 0.9rem;
+  justify-content: space-between;
+}
+.social {
+  margin-left: 20rem;
+  width: 10vw;
+  display: flex;
+  justify-content: space-between;
+}
+.socialLinks {
+  text-decoration: none;
+  color: rgb(141, 139, 139);
+}
+.socialLinks:hover {
+  color: rgb(172, 172, 172);
+}
