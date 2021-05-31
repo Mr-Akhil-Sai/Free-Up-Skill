@@ -25,6 +25,7 @@
   text-decoration: none;
   font-size: 1.8rem;
   color: rgb(211, 71, 20);
+  letter-spacing: 1px;
 }
 
 .logo {
@@ -40,7 +41,8 @@
 }
 .links {
   text-decoration: none;
-  color: black;
+  color: #636363;
+  letter-spacing: 1px;
   font-size: 0.9rem;
 }
 .links:hover {
@@ -48,11 +50,16 @@
 }
 .login {
   border-radius: 2rem;
-  padding: 0.2em 1em;
-  border: 1px solid black;
+  padding: 0.5em 1em;
+  background: black;
+  color: whitesmoke;
 }
 .login:hover {
   color: rgb(223, 91, 43);
+}
+.active {
+  color: rgb(223, 91, 43);
+  text-decoration: none;
 }
 
 /*  SECTION 1 */
@@ -108,8 +115,8 @@
   margin-left: 1rem;
 }
 .cardContent {
-  color: #636363;
-  margin-left: 1rem;
+  color: #7e7e7e;
+  margin: 0 1rem;
   text-align: left;
   font-size: 0.8rem;
 }
@@ -120,13 +127,13 @@
   border-radius: 0.5rem 0.5rem 0 0;
 }
 .button {
-  padding: 0.5rem 2rem;
-  margin: 0.5rem auto;
+  padding: 0.5rem 8.1rem;
+  margin: 0.7rem auto;
   background: none;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: whitesmoke;
-  background: black;
-  border: 2px solid black;
+  color: #494848;
+  border: 1px solid black;
   border-radius: 5px;
 }
 .button:hover {
@@ -134,16 +141,13 @@
   cursor: pointer;
 }
 .buttonDiv {
-  margin-top: 0.5rem;
-  height: 60px;
-  padding: 0 7rem;
-  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 0 01rem;
 }
 
 /* SECTION 2 */
 
 .section2 {
-  padding: 0 5em;
+  padding: 0 2em;
   margin-bottom: 2rem;
 }
 .rankHeading {
@@ -154,10 +158,14 @@
 }
 .parentBoard {
   display: flex;
+  justify-content: space-between;
   width: 100%;
 }
 .childOne {
   display: flex;
+  justify-content: space-between;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
   margin: 0 auto;
 }
 .aptitudeDiv,
@@ -172,37 +180,42 @@
   padding: 0.5rem 0;
 }
 .aptitudeHeading {
-  color: rgb(141, 139, 139);
-  /* padding: 0 1rem; */
-  font-size: 1.2rem;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 .sudokuHeading {
-  font-size: 1.2rem;
-  color: rgb(141, 139, 139);
-  padding-left: 2rem;
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
+  /* padding-left: 2rem; */
+  font-weight: 600;
 }
 .ranksHeading {
-  color: rgb(141, 139, 139);
-  font-size: 1.2rem;
-  margin-left: 9rem;
+  color: rgb(151, 148, 148);
+  font-size: 1.4rem;
+  margin-bottom: 1.1rem;
+  margin-left: 10rem;
 }
 .ranks {
   text-align: left;
   padding-left: 5px;
-  margin: 0.5rem 0;
+  color: rgb(100, 100, 100);
+  margin: 1rem 0;
   font-size: 1.5rem;
 }
 .sudokuRanks {
   text-align: left;
+  color: rgb(100, 100, 100);
   padding-left: 5px;
-  margin: 0.5rem 0;
-  margin-left: 2rem;
+  margin: 01rem 0;
+  /* margin-left: 2rem; */
   font-size: 1.5rem;
 }
 .rank {
   text-align: right;
+  color: rgb(151, 148, 148);
   padding-right: 5px;
-  margin: 0.5rem 0;
+  margin: 01rem 0;
   font-size: 1.5rem;
 }
 .bg {
@@ -212,7 +225,7 @@
 /* SECTION 3 */
 
 .section3 {
-  padding: 0 5em;
+  /* padding: 0 5em; */
   height: 30vh;
 }
 .parent {
@@ -233,6 +246,8 @@
 .studentNumbers {
   padding: 2rem;
   border-radius: 4rem;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.25); */
   font-size: 2.4rem;
   border: none;
   background: rgb(7, 213, 240, 0.5);
@@ -241,6 +256,8 @@
   font-size: 2.4rem;
   padding: 2rem;
   border-radius: 4rem;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.25); */
   border: none;
   background: rgb(201, 50, 50, 0.5);
 }
@@ -248,6 +265,8 @@
   font-size: 2.4rem;
   padding: 2rem;
   border-radius: 4rem;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.25); */
   border: none;
   background: rgb(71, 204, 44, 0.5);
 }
@@ -255,6 +274,8 @@
   font-size: 2.4rem;
   padding: 2rem;
   border-radius: 4rem;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.25); */
   border: none;
   background: rgb(231, 9, 231, 0.5);
 }
@@ -264,7 +285,8 @@
 .footer {
   background: black;
   color: whitesmoke;
-  padding: 2em 5em;
+  padding: 2em 0em;
+  padding-left: 5em;
 }
 .footerParent {
   display: flex;
@@ -275,8 +297,10 @@
   font-size: 1.8rem;
 }
 .rightMost {
-  width: 40vw;
+  width: 45vw;
   display: flex;
+  justify-content: space-between;
+  padding-right: 5em;
 }
 .company {
   margin: 0 10rem;
@@ -312,4 +336,14 @@
 }
 .socialLinks:hover {
   color: rgb(172, 172, 172);
+}
+
+/* QUANTITATIVE PAGE */
+
+.quantitativeHeading {
+  margin-top: 10vh;
+  font-size: 1.8rem;
+}
+.container {
+  height: 43vh;
 }
