@@ -4,33 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+    crossorigin="anonymous"
+  />
     <title>FREE UP SKILL | Learn to Grow</title>
   </head>
-  <body>
     <div class="container is-small">
-      <div class="card is-centered">
+      <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+          <div class="card card-body">
         <form>
-          <div class="card-content">
-            <label class="label">Name</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Text input" />
-            </div>
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+              <input class="form-control" type="text" placeholder="Text input" />
           </div>
-          <div class="card-content">
-            <label class="label">Password</label>
-            <div class="control">
-              <input class="input" type="password" placeholder="Password" />
-            </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+              <input class="form-control" type="password" placeholder="Password" />
           </div>
-          <div class="card-content">
-            <button class="button is-link">Log in</button>
-            <button class="button is-link">
-              <a href="./register.html" style="color: black">Register</a>
-            </button>
+          <div class="d-grid gap-2  mx-auto">
+            <button class="btn btn-danger">Log in</button>
+            <p class="lead mt-4">
+              No Account? <a class="link-danger" style="text-decoration: none;" href="./register.html">Register</a>
+            </p>
           </div>
         </form>
       </div>
+    </div>
+  </div>
+</div>
     </div>
   </body>
 </html>

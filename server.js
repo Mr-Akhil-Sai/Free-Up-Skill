@@ -43,12 +43,14 @@ app.post("/register", (req, res) => {
           password,
           confirmPassword,
         });
+        // encrypting the password
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) {
               console.log(err);
             }
             newUser.password = hash;
+            // saving user to db
             newUser
               .save()
               .then((result) => {
