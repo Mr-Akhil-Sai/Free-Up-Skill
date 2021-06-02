@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+    <div class="card card-body">
+      <form action="/register" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" id="name" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" name="email" id="email" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" id="password" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label"
+            >Enter the password once again</label
+          >
+          <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" />
+        </div>
+        <div class="d-grid gap-1 col-3 mx-auto">
+          <button class="btn btn-primary" type="submit">Register</button>
+        </div>
+      </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+  </body>
+</html>
