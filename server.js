@@ -2,30 +2,47 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const bcrypt = require("bcrypt");
-const connectDB = require("./config/db");
-const User = require("./model /model");
+const passport = require("passport");
+const session = require("express-session");
 
+// requiring local modules
+const connectDB = require("./config/db");
+const User = require("./models/model");
+
+require("./config/oauth")(passport);
 // load Config
 dotenv.config({ path: "./config/config.env" });
 
 // connecting to db
 connectDB();
 
+// specifing port
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
 // load public files
-app.use(express.static("public"));
-
+app.use(express.static("public/homePage"));
 // bodyparser
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
+// express session
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // morgan middleware
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 
@@ -55,7 +72,9 @@ app.post("/register", (req, res) => {
               .save()
               .then((result) => {
                 console.log(result);
-                res.sendFile(__dirname + "/public/login.html");
+                res.sendFile(
+                  __dirname + "/public/homePage/loginSignup/login.html"
+                );
               })
               .catch((err) => console.log(err));
           });
@@ -64,6 +83,22 @@ app.post("/register", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
+// Login route
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile"] })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/login.html",
+  }),
+  (req, res) => {
+    res.sendFile(__dirname + "/public/homePage/loginSignup/dashbord.html");
+  }
+);
 
 app.listen(
   PORT,
