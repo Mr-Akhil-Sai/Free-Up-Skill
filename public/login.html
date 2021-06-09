@@ -17,19 +17,20 @@
       <div class="row mt-5">
         <div class="col-md-6 m-auto">
           <div class="card card-body">
-        <form action="/login" method="POST">
+        <form class="form">
+          <div id= "alert" role="alert"></div>
           <div class="mb-3">
-            <label class="form-label">Name</label>
-              <input class="form-control" type="text" placeholder="Enter your Name" />
+            <label class="form-label">Email</label>
+              <input id="userEmail" class="form-control" autocomplete="off" type="email" placeholder="Enter your Name" />
           </div>
           <div class="mb-3">
             <label class="form-label">Password</label>
-              <input class="form-control" type="password" placeholder="Password" />
+              <input id="password" class="form-control" autocomplete="off" type="password" placeholder="Password" />
           </div>
           <div class="d-grid gap-2  col-8 mx-auto">
-            <button type="submit" class ="btn btn-danger">Log in</button>
+            <button id="loginBtn" class ="btn btn-danger">Log in</button>
             <h2 class="h4 mt-2 me-lg-0">OR</h2>
-            <button class="btn btn-danger"><a href="/auth/google" style="text-decoration: none; color: whitesmoke;">Log in with google</a></button>
+            <button class="btn btn-danger" ><a href="/auth/google" style="text-decoration: none; color: whitesmoke;">Log in with google</a></button>
             <p class="text-muted">
               No Account? <a class="link-danger" style="font-size: 1.5rem; font-weight: 600;" href="./register.html">Register</a>
             </p>
@@ -40,5 +41,6 @@
   </div>
 </div>
     </div>
+    <script src="./login.js"></script>
   </body>
 </html>

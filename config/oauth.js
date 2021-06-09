@@ -1,5 +1,4 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const mongoose = require("mongoose");
 const googleUser = require("../models/oAuthModel");
 
 // getting google client id and secret
@@ -40,7 +39,7 @@ module.exports = function (passport) {
   });
 
   passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
+    googleUser.findById(id, (err, user) => {
       done(err, user);
     });
   });

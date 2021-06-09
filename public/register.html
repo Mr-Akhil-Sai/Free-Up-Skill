@@ -11,13 +11,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./users.css">
-    <title>Document</title>
+    <title>Register</title>
   </head>
     <div class="container-sm registerContainer">
       <div class="row mt-5">
         <div class="col-md-6 m-auto">
     <div class="card card-body">
-      <form action="/register" method="POST">
+      <form>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
           <input type="text" name="name" id="name" class="form-control" />
@@ -38,7 +38,7 @@
         </div>
         <div class="d-grid gap-2 col-7 mx-auto
         ">
-          <button class="btn btn-danger" type="submit">Register</button>
+          <button class="btn btn-danger" onclick="register()">Register</button>
           <p class="text-muted">Have An Account?<a class="link-danger" style="font-size: 1.5rem; font-weight: 600;" href="./login.html">Login</a></p>
 
         </div>
@@ -47,6 +47,6 @@
     </div>
     </div>
     </div>
-    
+    <script src="./register.js"></script>
   </body>
 </html>
