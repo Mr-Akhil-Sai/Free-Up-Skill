@@ -1,11 +1,3 @@
-// getting the token
-const token =document.cookie
-const decodedToken = JSON.parse(atob(token.split(".")[1]))
-const username = decodedToken.username
-// showing userName
-const user = document.querySelector(".user")
-user.innerText = username;
-
 // getting the values
 const submitBtn = document.querySelector("#submitbtn")
 const questionInput = document.querySelector("#questionInput")
@@ -21,7 +13,6 @@ submitBtn.addEventListener("click", submitQuestion)
 
 async function submitQuestion(event){
     event.preventDefault();
-    console.log(questionInput);
     const questions={
         question: questionInput.value,
         a: firstOption.value,
@@ -52,3 +43,6 @@ function showingAlertMessages(message, className) {
     alert.className = `alert ${className} alert-dismissible fade show`;
     alert.appendChild(closeBtn);
   }
+
+
+

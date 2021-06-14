@@ -156,6 +156,7 @@ app.get("/dashbord", (req, res) => {
 // admin post route
 app.post("/admin", (req, res)=>{
   const newQuestion = new question({
+    _id:"q1",
     question: req.body.question,
     a: req.body.a,
     b: req.body.b,
@@ -173,6 +174,16 @@ app.post("/admin", (req, res)=>{
     .catch(err =>  console.log(err))
   })
 
+// Student get route
+app.get("/student", async (req,res)=>{
+  const result =await question.find()
+  const questions = await result
+  console.log(result);
+  res.json({
+    status:"ok",
+    message: questions
+  })
+}) 
 
 app.listen(
   PORT,
