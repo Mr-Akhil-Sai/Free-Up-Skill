@@ -23,14 +23,16 @@ async function login(event) {
   const result = await response.json();
   // success
   if (result.status === "ok") {
-    console.log("got token: ", result.data);
-    localStorage.setItem("token", result.data);
-    window.location.href = "/dashboard.html";
-  }
+    if(result.role === "admin"){
+      window.location.href = "/admin.html"
+    }
+    else{
+      window.location.href = "/student.html"
+    }
+    }
   // user not found
   else if (result.status === "no user") {
     showingAlertMessages(result.message, "alert-warning");
-    console.log(alert);
     userEmail.value = "";
     password.value = "";
   }

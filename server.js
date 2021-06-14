@@ -3,13 +3,15 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
-const session = require("express-session");
+const session = require("express-session");const cookieParser = require('cookie-parser');
+
 const jwt = require("jsonwebtoken");
 
 // requiring local modules
 const connectDB = require("./config/db");
 const User = require("./models/userModel");
 const { json } = require("express");
+const { use } = require("passport");
 
 // oauth
 require("./config/oauth")(passport);
@@ -113,6 +115,7 @@ app.post("/login", async (req, res) => {
     else{
       bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
         if (isMatch) {
+          const maxAge = 24 * 60 * 60
           const token = jwt.sign(
             {
               id: user._id,
@@ -120,22 +123,47 @@ app.post("/login", async (req, res) => {
             },
             process.env.JWT_SECRET
           );
-          return res.json({ status: "ok", data: token });
+          res.cookie("jwt",token,{
+            expiresIn: maxAge
+          } )
+          return res.json({
+            status: "ok", 
+            role: user.role
+          })
         } else {
-          return res.json({ status: "error", message: "error" });
+          return res.json({ status: "error", message: "entered password is incorrect" });
         }
       });
     }
   });
 });
 
-// app.get("/dashbord", (req, res) => {
-//   console.log(req.session.user);
-//   if (!req.session.user) {
-//     return res.status(401).send();
-//   }
-//   res.sendFile(__dirname + "/public/dashboard.html");
-// });
+app.get("/dashbord", (req, res) => {
+  const token = req.cookies.jwt
+  if(token){
+    jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken)=>{
+      if(err){
+        res.json({
+          status: "error",
+          message: "token is not verified"
+        })
+      }
+      else{
+        console.log(decodedToken);
+        res.json({
+          status:"ok",
+          message:"token is verified"
+        })
+      }
+    })
+  }
+  else{
+    res.json({
+      status: "no token",
+      message: "token not found"
+    })
+  }
+});
 // Login with google
 app.get(
   "/auth/google",
