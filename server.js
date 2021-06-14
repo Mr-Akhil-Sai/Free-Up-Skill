@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 
 // requiring local modules
 const connectDB = require("./config/db");
-const User = require("./models/model");
+const User = require("./models/userModel");
 const { json } = require("express");
 
 // oauth
@@ -53,32 +53,53 @@ app.use(passport.session());
 
 // register route
 app.post("/register", async (req, res) => {
-  const { userName, email, password: plainTextassword } = req.body;
-  const password = await bcrypt.hash(plainTextassword, 10);
-  await User.findOne({ email: email })
-    .then((user) => {
-      if (user) {
-        res.send("Entered email is already taken");
-      } else {
-        const newUser = new User({
-          userName,
-          email,
-          password,
-        });
-        // saving user to db
-        newUser
-          .save()
-          .then((result) => {
-            console.log(result);
-            res.json({
-              status: "ok",
-              message: "user registered",
-            });
-          })
-          .catch((err) => console.log(err));
-      }
+  console.log(req.body.role);
+  if(await req.body.password.length < 6){
+    res.json({
+      status: "length error",
+      message: " password length should be 6 characters"
     })
-    .catch((err) => console.log(err));
+  }
+  else if (await req.body.password !== req.body.confirmPassword){
+    console.log(req.body.password, req.body.confirmPassword);
+    res.json({
+      status: "not matched",
+      message: "password does not match"
+    })
+  }
+
+  else{
+    const { userName, email, password: plainTextassword, role } = req.body;
+    const password = await bcrypt.hash(plainTextassword, 10);
+    await User.findOne({ email: email })
+      .then((user) => {
+        if (user) {
+          res.json({
+            status: "user exits",
+            message: "user email is already taken"
+          });
+        } else {
+          const newUser = new User({
+            userName,
+            email,
+            password,
+            role
+          });
+          // saving user to db
+          newUser
+            .save()
+            .then((result) => {
+              console.log(result);
+              res.json({
+                status: "ok",
+                message: "user registered",
+              });
+            })
+            .catch((err) => console.log(err));
+        }
+      })
+      .catch((err) => console.log(err.message));
+  }
 });
 
 // Login with local

@@ -13,40 +13,49 @@
     <link rel="stylesheet" href="./users.css">
     <title>Register</title>
   </head>
-    <div class="container-sm registerContainer">
+  <body class="bg-dark">
+    <div class="container-lg registerContainer">
       <div class="row mt-5">
         <div class="col-md-6 m-auto">
     <div class="card card-body">
       <form>
+        <div id= "alert" role="alert"></div>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" name="name" id="name" class="form-control" />
+          <input type="text" name="name" id="name" autocomplete="off" class="form-control" />
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">E-mail</label>
-          <input type="email" name="email" id="email" class="form-control" />
+          <input type="email" name="email" id="email" autocomplete="off" class="form-control" />
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" id="password" class="form-control" />
+          <input type="password" name="password" id="password" autocomplete="off" class="form-control" />
         </div>
         <div class="mb-3">
           <label for="confirmPassword" class="form-label"
             >Confirm Password</label
           >
-          <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" />
+          <input type="password" name="confirmPassword" id="confirmPassword" autocomplete="off" class="form-control" />
         </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label"
+            >Admin / Student</label
+          >
+          <input type="text" name="select" id="select" class="form-control" />
+        </div>
+        <br>
         <div class="d-grid gap-2 col-7 mx-auto
         ">
-          <button class="btn btn-danger" onclick="register()">Register</button>
+          <button class="btn btn-danger" id="registerButton">Register</button>
           <p class="text-muted">Have An Account?<a class="link-danger" style="font-size: 1.5rem; font-weight: 600;" href="./login.html">Login</a></p>
-
-        </div>
+      </div>
       </form>
     </div>
     </div>
     </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="./register.js"></script>
   </body>
 </html>
