@@ -67,7 +67,6 @@ app.post("/register", async (req, res) => {
       message: "password does not match"
     })
   }
-
   else{
     const { userName, email, password: plainTextassword, role } = req.body;
     const password = await bcrypt.hash(plainTextassword, 10);
@@ -111,22 +110,22 @@ app.post("/login", async (req, res) => {
         message: "no user found",
       });
     }
-    bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
-      if (isMatch) {
-        const token = jwt.sign(
-          {
-            id: user._id,
-            username: user.userName,
-          },
-          process.env.JWT_SECRET
-        );
-        return res.json({ status: "ok", data: token });
-      } else {
-        console.log(req.body.password === user.password);
-
-        return res.json({ status: "error", message: "error" });
-      }
-    });
+    else{
+      bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
+        if (isMatch) {
+          const token = jwt.sign(
+            {
+              id: user._id,
+              username: user.userName,
+            },
+            process.env.JWT_SECRET
+          );
+          return res.json({ status: "ok", data: token });
+        } else {
+          return res.json({ status: "error", message: "error" });
+        }
+      });
+    }
   });
 });
 

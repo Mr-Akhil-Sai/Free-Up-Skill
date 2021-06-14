@@ -29,14 +29,14 @@ async function login(event) {
   }
   // user not found
   else if (result.status === "no user") {
-    showingAlertMessages("no user found", "alert-warning");
+    showingAlertMessages(result.message, "alert-warning");
     console.log(alert);
     userEmail.value = "";
     password.value = "";
   }
   // email or password error
   else if (result.status === "error") {
-    showingAlertMessages("email or password are incorrect", "alert-danger");
+    showingAlertMessages(result.message, "alert-danger");
     userEmail.value = "";
     password.value = "";
   }

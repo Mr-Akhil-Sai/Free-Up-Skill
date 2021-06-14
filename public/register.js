@@ -2,22 +2,21 @@ const inputName = document.querySelector("#name");
 const inputEmail = document.querySelector("#email");
 const inputPassword = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
-const selectMenu = document.querySelector("#select")
+const roleMenu = document.querySelector("#select")
 const registerBtn = document.querySelector("#registerButton")
 const alert = document.querySelector("#alert");
 
 registerBtn.addEventListener("click", register)
 async function register(event) {
   event.preventDefault()
-  let selectLower = selectMenu.value
-  selectLower = selectLower.toLowerCase()
-  console.log(selectLower);
+  let roleLower = roleMenu.value
+  roleLower = roleLower.toLowerCase()
   const data = {
     userName: inputName.value,
     email: inputEmail.value,
     password: inputPassword.value,
     confirmPassword:confirmPassword.value,
-    role: selectLower
+    role: roleLower
   };
   const options = {
     method: "POST",
@@ -30,19 +29,19 @@ async function register(event) {
   let response = await userDetails.json();
 
   if(response.status ==="user exits"){
-    showingAlertMessages(response.message, "warning")
+    showingAlertMessages(response.message, "alert-warning")
   }
   else if( response.status === "length error"){
-    showingAlertMessages(response.message, "warning")
+    showingAlertMessages(response.message, "alert-warning")
   }
   else if(response.status === "not matched"){
-    showingAlertMessages(response.message, "warning")
+    showingAlertMessages(response.message, "alert-warning")
   }
   else if(response.status === "role error"){
-    showingAlertMessages(response.message, "warning")
+    showingAlertMessages(response.message, "alert-warning")
   }
   else{
-    showingAlertMessages(response.message, "success")
+    showingAlertMessages(response.message, "alert-success")
   }
 }
 
