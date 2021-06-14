@@ -10,30 +10,79 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
       />
-      <script src="./common.js"></script>
-    <title>Admin Page</title>
-  </head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <title>Admin Page</title>
+</head>
   <body>
-      <nav class="navbar navbar-expand-lg bg-dark navbar-dark text-light">
-        <div class="container">
-          <a href="#" class="navbar-brand">Free Up Skill</a>
-          <div class="collapse navbar-collapse"> 
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
+      <div class="container">
+        <a href="#" class="navbar-brand">Free Up Skill</a>
+          <button class="navbar-toggler" type="button"
+          data-bs-toggle="collapse" data-bs-target="#navmenu">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navmenu"> 
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item dropdown ">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown button
+              <li class="nav-item dropdown row-sm">
+                <button class="btn btn-warning dropdown-toggle user" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  user
                 </button>              
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">logout</a></li>
+                  <li class="mx-5"><a class="btn btn-danger col" id="logoutBtn" href="#">logout</a></li>
                 </ul>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
+      <div class="container">
+        <h1 class="h1">create question</h1>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#question">
+          create questions
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="question" tabindex="-1" aria-labelledby="questionLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="questionLabel">Questions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p class="lead">Enter the question</p>
+                <form>
+                  <div id= "alert" role="alert"></div>
+                  <div class="mb-3">
+                    <label for="question" class="col-form-label">Question</label>
+                    <input type="text" name="question" id="questionInput" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" placeholder="Correct Option" autocomplete="off" name="firstOption" id="firstOption" class="form-control border-success">
+                  </div>
+          <div class="mb-3">
+            <input type="text" placeholder="Wrong Option" name="secondOption" autocomplete="off" id="secondOption" class="form-control border-danger">
+          </div>
+          <div class="mb-3">
+            <input type="text" placeholder="Wrong Option" autocomplete="off" name="thirdOption" id="thirdOption" class="form-control border-danger">
+          </div>
+          <div class="mb-3">
+            <input type="text" placeholder="Wrong Option" name="fourthOption" autocomplete="off" id="fourthOption" class="form-control border-danger">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="submitbtn">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="./common.js"></script>
     <script src="./admin.js"></script>
   </body>
 </html>

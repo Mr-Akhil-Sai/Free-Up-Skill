@@ -2,19 +2,12 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const bcrypt = require("bcryptjs");
-const passport = require("passport");
-const session = require("express-session");const cookieParser = require('cookie-parser');
-
 const jwt = require("jsonwebtoken");
 
 // requiring local modules
 const connectDB = require("./config/db");
 const User = require("./models/userModel");
-const { json } = require("express");
-const { use } = require("passport");
-
-// oauth
-require("./config/oauth")(passport);
+const question = require("./models/questionsModel")
 
 // load Config
 dotenv.config({ path: "./config/config.env" });
@@ -29,29 +22,15 @@ const app = express();
 
 // load public files
 app.use(express.static("public"));
+
 // bodyparser
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// express session
-app.use(
-  session({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+app.use(express.urlencoded({extended: true}))
 
 // morgan middleware
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Routes
 
 // register route
 app.post("/register", async (req, res) => {
@@ -103,7 +82,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Login with local
+//Local Login route
 app.post("/login", async (req, res) => {
   await User.findOne({ email: req.body.email }).then((user) => {
     if (!user) {
@@ -138,6 +117,15 @@ app.post("/login", async (req, res) => {
   });
 });
 
+// Logout route
+app.get("/logout",(req, res)=>{
+  res.cookie("jwt", "", {maxAge: 1}),
+  res.json({
+    status: "ok",
+    message: "User loged out"
+  })
+})
+// admin or student get route
 app.get("/dashbord", (req, res) => {
   const token = req.cookies.jwt
   if(token){
@@ -164,21 +152,27 @@ app.get("/dashbord", (req, res) => {
     })
   }
 });
-// Login with google
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile"] })
-);
 
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "/login.html",
-  }),
-  (req, res) => {
-    res.sendFile(__dirname + "/public/dashbord.html");
-  }
-);
+// admin post route
+app.post("/admin", (req, res)=>{
+  const newQuestion = new question({
+    question: req.body.question,
+    a: req.body.a,
+    b: req.body.b,
+    c: req.body.c,
+    d: req.body.d,
+  })
+  // Saving questions to db
+  newQuestion.save()
+  .then(result =>{
+    console.log(result);
+    res.json({
+      status: "ok",
+      message: "question succesfully updated"
+    })})
+    .catch(err =>  console.log(err))
+  })
+
 
 app.listen(
   PORT,
