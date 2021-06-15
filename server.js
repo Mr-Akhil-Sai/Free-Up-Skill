@@ -228,27 +228,6 @@ app.post("/student", async(req, res) => {
    else{
      res.json({status: 'wrong', message: 'Wrong answer'})
    }
-    // result.options.map(value=> {
-    //   console.log(value._id);
-    //   console.log(value.isCorrect);
-    //   console.log(answer);
-    //   if(value._id===answer && value.isCorrect===true){
-    //      res.json({status: 'ok', message: 'Correct answer'})
-    //   }
-    //   else{
-
-    //     res.json({status: 'wrong', message: 'Wrong answer'})
-    //   }
-    // });
-    // let i = 0
-    // for(i = 0; i < 4; i++){
-    //   const option = optionsArray[i]
-    //   console.log(option);
-    //   console.log(result.a)
-    //   if(answer === result.i){
-    //     console.log("err");
-    //   }
-    // }
   } )
     .catch(err => console.log(err))
 })

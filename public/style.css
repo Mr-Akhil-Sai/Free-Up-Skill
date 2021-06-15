@@ -1,0 +1,55 @@
+.card{
+    height: 430px;
+}
+.img{
+    width: 360px;
+    height: 230px;
+}
+.studentNumbers {
+    display:block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.15);
+    font-size: 2rem;
+    margin-left: 5rem;
+    border: none;
+    background: rgb(7, 213, 240, 0.5);
+  }
+  .questionNumbers {
+    display:block;
+    height: 100px;
+    margin-left: 5rem;
+    width: 100px;
+    border-radius: 50%;
+    font-size: 2.4rem;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.15);
+    border: none;
+    background: rgb(201, 50, 50, 0.5);
+  }
+  .testNumbers {
+    display:block;
+    margin-left: 5rem;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    font-size: 2.4rem;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.15);
+    border: none;
+    background: rgb(71, 204, 44, 0.5);
+  }
+  .hourNumbers {
+    margin-left: 5rem;
+    display:block;
+    height: 100px;
+    width: 100px;
+    font-size: 2.4rem;
+    border-radius: 4rem;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.15);
+    border: none;
+    background: rgb(231, 9, 231, 0.5);
+  }
+
+  @media (min-width: 576px) { 
+      
+  }
