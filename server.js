@@ -7,7 +7,8 @@ const jwt = require("jsonwebtoken");
 // requiring local modules
 const connectDB = require("./config/db");
 const User = require("./models/userModel");
-const question = require("./models/questionsModel")
+const question = require("./models/questionsModel");
+const { response } = require("express");
 
 // load Config
 dotenv.config({ path: "./config/config.env" });
@@ -155,13 +156,31 @@ app.get("/dashbord", (req, res) => {
 
 // admin post route
 app.post("/admin", (req, res)=>{
+  const {a, b, c, d} = req.body
   const newQuestion = new question({
-    _id:"q1",
     question: req.body.question,
-    a: req.body.a,
-    b: req.body.b,
-    c: req.body.c,
-    d: req.body.d,
+    options:[
+      {
+        _id: "o1",
+        a: a,
+        isCorrect: true,
+      }, 
+      {
+        _id: "o2",
+        b: b,
+        isCorrect: false
+      },
+      {
+        _id: "o3",
+        c:c,
+        isCorrect: false
+      },
+      {
+        _id: "o4",
+        d: d,
+        isCorrect:false
+      }
+    ]
   })
   // Saving questions to db
   newQuestion.save()
@@ -177,13 +196,62 @@ app.post("/admin", (req, res)=>{
 // Student get route
 app.get("/student", async (req,res)=>{
   const result =await question.find()
-  const questions = await result
-  console.log(result);
+  const data = await result
+  
+  const questionId = data[0].id
+  const questions = data[0].question
+  const options = data[0].options
+  const option = []
+  options.forEach(element => {
+    delete element.isCorrect
+    option.push(element)
+  });
   res.json({
     status:"ok",
-    message: questions
+    questionId:questionId,
+    questions: questions,
+    options: option
   })
 }) 
+
+// Student post route
+app.post("/student", async(req, res) => {
+  const { questionId, answer} = req.body
+  question.findById(questionId).then(result =>{
+    console.log(result.options);
+    let correctOption = result.options.filter(value=> value._id===answer)[0];
+    console.log(correctOption);
+
+    if(correctOption.isCorrect===true){
+      res.json({status: 'ok', message: 'Correct answer'})
+   }
+   else{
+     res.json({status: 'wrong', message: 'Wrong answer'})
+   }
+    // result.options.map(value=> {
+    //   console.log(value._id);
+    //   console.log(value.isCorrect);
+    //   console.log(answer);
+    //   if(value._id===answer && value.isCorrect===true){
+    //      res.json({status: 'ok', message: 'Correct answer'})
+    //   }
+    //   else{
+
+    //     res.json({status: 'wrong', message: 'Wrong answer'})
+    //   }
+    // });
+    // let i = 0
+    // for(i = 0; i < 4; i++){
+    //   const option = optionsArray[i]
+    //   console.log(option);
+    //   console.log(result.a)
+    //   if(answer === result.i){
+    //     console.log("err");
+    //   }
+    // }
+  } )
+    .catch(err => console.log(err))
+})
 
 app.listen(
   PORT,

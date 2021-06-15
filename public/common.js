@@ -1,11 +1,12 @@
 // getting the token
 const token =document.cookie
+document.onload= redirectingFunction()
+
 const decodedToken = JSON.parse(atob(token.split(".")[1]))
 const username = decodedToken.username
 // showing userName
 const user = document.querySelector(".user")
 user.innerText = username;
-document.onload= redirectingFunction()
 
 function redirectingFunction(){
     const token  = document.cookie
