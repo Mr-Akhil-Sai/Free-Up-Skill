@@ -196,27 +196,9 @@ app.post("/admin", (req, res)=>{
 // Student get route
 app.get("/student", async (req,res)=>{
   const result =await question.find()
-  const data = await result
-  const questionId = []
-  const questions = []
-  const options = []
-  const option = []
-  for(let i = 0; i<data.length; i++){
-    questionId.push(data[i].id)
-    questions.push(data[i].question)
-    options.push(data[i].options)
-  }
-  options.forEach(element => {
-    element.forEach(ele => {
-      delete ele.isCorrect
-      option.push(ele)
-    })
-  });
   res.json({
     status:"ok",
-    questionId:questionId,
-    questions: questions,
-    options: option
+    data: result
   })
 }) 
 

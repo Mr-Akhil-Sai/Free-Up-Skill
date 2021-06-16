@@ -1,30 +1,64 @@
 const questionDiv = document.querySelector(".questionsDiv")
 const takeTestBtn = document.querySelector("#takeTestBtn")
 const alert = document.querySelector("#alert");
+let questions
+let index = 0
 
 takeTestBtn.addEventListener("click", showQuestions)
 
+// fetching data 
 async function showQuestions(e){
     e.preventDefault()
     const response = await fetch("/student")
     const result = await response.json()
     if(result.status === "ok"){
-        for(let i=0; i<result.questionId.length; i++){
-            for(let j=0; j<result.questions.length; j++){
-                for (let k = 0; k < result.options.length; k++) {                    
-                    const questionId = result.questionId[i]
-                    const question = result.questions[j]
-                    const a = result.options[k]
-                    const b = result.options[k]
-                    const c = result.options[k]
-                    const d = result.options[k]
-                    sendingValues(questionId, question, a, b, c, d)
-                }
-            }
-        }
+        console.log(result)
+        questions = result.data
+        questionData();
     }
 }
 
+// storing data from backend 
+function questionData(){
+    const questionId = questions[index].questionId
+                const question = questions[index].question
+                const a = questions[index].options[0]
+                const b = questions[index].options[1]
+                const c = questions[index].options[2]
+                const d = questions[index].options[3]
+                sendingValues(questionId, question, a, b, c, d)
+}
+
+const nextBtn = document.querySelector("#nextBtn")
+const previousBtn = document.querySelector("#previousBtn")
+
+// next question function
+nextBtn.addEventListener("click", nextQuestion)
+
+function nextQuestion(e){
+    e.preventDefault()
+    if(index === questions.length - 2){
+        nextBtn.style.display = "none"
+        return submitBtn.style.display = "flex"
+    }
+    if(index === 0){
+        previousBtn.style.display = "flex"   
+    }
+    console.log(questionId);
+    index ++
+    questionData()
+}
+
+// previous question function
+previousBtn.addEventListener("click", previousQuestion)
+
+function previousQuestion(e){
+    e.preventDefault()
+    index --
+    questionData()
+}
+
+// printing values on to screen
 function sendingValues(questionId, question, a, b, c, d){
     const questionPara = document.querySelector(".questionPara")
     const optionA = document.querySelector(".labelA")
@@ -59,6 +93,8 @@ function sendingValues(questionId, question, a, b, c, d){
         }
     }
 }
+
+// sending answers to backend
 async function sendingAnswersToBackend(questionId, answer){
     const details = {
         questionId: questionId,
@@ -83,6 +119,7 @@ async function sendingAnswersToBackend(questionId, answer){
     }
 }
 
+// showing alert messages
 function showingAlertMessages(message, className) {
     closeBtn = document.createElement("button");
     closeBtn.className = "btn-close";
