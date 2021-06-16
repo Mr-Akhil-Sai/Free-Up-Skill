@@ -1,3 +1,8 @@
+body::before {
+  display: block;
+  content: '';
+  height: 60px;
+}
 .card{
     height: 430px;
 }
@@ -50,6 +55,4 @@
     background: rgb(231, 9, 231, 0.5);
   }
 
-  @media (min-width: 576px) { 
-      
-  }
+

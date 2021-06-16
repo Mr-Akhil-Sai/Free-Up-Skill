@@ -21,8 +21,7 @@
       <div class="row mt-5">
         <div class="col-md-6 m-auto">
           <div class="card card-body">
-            <a href="./index.html" ><i class="bi bi-arrow-left-circle h3"></i></a>
-            
+            <a href="./login.html" ><i class="bi bi-arrow-left-circle h3"></i></a> 
             <form>
               <div id= "alert" role="alert"></div>
         <div class="mb-3">
@@ -43,11 +42,13 @@
           >
           <input type="password" name="confirmPassword" id="confirmPassword" autocomplete="off" class="form-control" />
         </div>
-        <div class="mb-3">
-          <label for="confirmPassword" class="form-label"
-            >Admin / Student</label
-          >
-          <input type="text" name="select" id="select" class="form-control" />
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label labelA" for="flexRadioDefault1" value="admin">Admin</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+          <label class="form-check-label labelB" for="flexRadioDefault2" value="student">Student</label>
         </div>
         <br>
         <div class="d-grid gap-2 col-7 mx-auto

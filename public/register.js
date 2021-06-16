@@ -2,21 +2,19 @@ const inputName = document.querySelector("#name");
 const inputEmail = document.querySelector("#email");
 const inputPassword = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
-const roleMenu = document.querySelector("#select")
 const registerBtn = document.querySelector("#registerButton")
 const alert = document.querySelector("#alert");
 
 registerBtn.addEventListener("click", register)
 async function register(event) {
   event.preventDefault()
-  let roleLower = roleMenu.value
-  roleLower = roleLower.toLowerCase()
+  gettingRole()
   const data = {
     userName: inputName.value,
     email: inputEmail.value,
     password: inputPassword.value,
     confirmPassword:confirmPassword.value,
-    role: roleLower
+    role: role
   };
   const options = {
     method: "POST",
@@ -53,4 +51,15 @@ function showingAlertMessages(message, className) {
   alert.appendChild(closeBtn);
 }
 
-
+function gettingRole(){
+  const input = document.querySelectorAll("input")
+  const label = document.querySelectorAll("label")
+  for(let i = 0; i < input.length; i++){
+    if(input[i].type === "radio"){
+      if(input[i].checked){
+        role = label[i].innerText
+        return role
+      }
+    }
+  }
+}
