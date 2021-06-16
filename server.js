@@ -204,21 +204,32 @@ app.get("/student", async (req,res)=>{
 
 // Student post route
 app.post("/student", async(req, res) => {
-  const { questionId, answer} = req.body
-  question.findById(questionId).then(result =>{
-    console.log(result.options);
-    let correctOption = result.options.filter(value=> value._id===answer)[0];
-    console.log(correctOption);
-
-    if(correctOption.isCorrect===true){
-      res.json({status: 'ok', message: 'Correct answer'})
-   }
-   else{
-     res.json({status: 'wrong', message: 'Wrong answer'})
-   }
-  } )
-    .catch(err => console.log(err))
+  let correctOptions = []
+  for (let i = 0; i < req.body.answers.length; i++) {
+    const {questionId, optionsId } = req.body.answers[i]
+    const questionsData = await question.findById(questionId)
+    findingCorrectAnswers(questionsData, optionsId,correctOptions)
+  }
+  console.log(correctOptions);
+  res.json({
+    status: "ok",
+    message: correctOptions
+  })
 })
+
+// finding correct answers for student route 
+function findingCorrectAnswers(questionsData, optionsId,correctOptions){
+  let correctOption = questionsData.options.filter(value=> value._id===optionsId)[0];
+    if(correctOption.isCorrect){
+      console.log("hello");
+      correctOptions.push(1)
+    }
+    else{
+      console.log("hi");
+      correctOptions.push(0)
+    }
+
+}
 
 app.listen(
   PORT,
