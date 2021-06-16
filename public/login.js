@@ -23,7 +23,7 @@ async function login(event) {
   const result = await response.json();
   // success
   if (result.status === "ok") {
-    if(result.role === "admin"){
+    if(result.role === "Admin"){
       window.location.href = "/admin.html"
     }
     else{

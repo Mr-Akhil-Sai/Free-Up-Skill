@@ -9,13 +9,19 @@ async function showQuestions(e){
     const response = await fetch("/student")
     const result = await response.json()
     if(result.status === "ok"){
-        const questionId = result.questionId
-        const question = result.questions
-        const a = result.options[0]
-        const b = result.options[1]
-        const c = result.options[2]
-        const d = result.options[3]
-        sendingValues(questionId, question, a, b, c, d)
+        for(let i=0; i<result.questionId.length; i++){
+            for(let j=0; j<result.questions.length; j++){
+                for (let k = 0; k < result.options.length; k++) {                    
+                    const questionId = result.questionId[i]
+                    const question = result.questions[j]
+                    const a = result.options[k]
+                    const b = result.options[k]
+                    const c = result.options[k]
+                    const d = result.options[k]
+                    sendingValues(questionId, question, a, b, c, d)
+                }
+            }
+        }
     }
 }
 
