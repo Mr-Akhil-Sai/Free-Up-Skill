@@ -55,3 +55,17 @@ body::before {
   }
 
 
+@media (max-width: 450px) {
+  .studentNumbers{
+    margin-left: 2rem;
+  }
+  .testNumbers{
+    margin-left: 2rem;
+  }
+  .hourNumbers{
+    margin-left: 2rem;
+  }
+  .questionNumbers{
+    margin-left: 2rem;
+  }
+}
