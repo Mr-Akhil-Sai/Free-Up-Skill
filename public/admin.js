@@ -27,12 +27,11 @@ async function submitQuestion(event){
         },
         body: JSON.stringify(questions)
     }
-
     const response = await fetch("/admin",option)
     const result = await response.json()
-    
     if(result.status === "ok"){
         showingAlertMessages(result.message, "alert-success")
+        emptyingInputValues()
     }
 }
 
@@ -44,5 +43,11 @@ function showingAlertMessages(message, className) {
     alert.appendChild(closeBtn);
   }
 
-
+function emptyingInputValues(){
+    questionInput.value = ""
+    firstOption.value = ""
+    secondOption.value = ""
+    thirdOption.value = ""
+    fourthOption.value = ""
+}
 

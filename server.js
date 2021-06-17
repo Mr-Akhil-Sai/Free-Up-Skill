@@ -162,22 +162,22 @@ app.post("/admin", (req, res)=>{
     options:[
       {
         _id: "o1",
-        a: a,
+        option: a,
         isCorrect: true,
       }, 
       {
         _id: "o2",
-        b: b,
+        option: b,
         isCorrect: false
       },
       {
         _id: "o3",
-        c:c,
+        option:c,
         isCorrect: false
       },
       {
         _id: "o4",
-        d: d,
+        option: d,
         isCorrect:false
       }
     ]
@@ -210,7 +210,6 @@ app.post("/student", async(req, res) => {
     const questionsData = await question.findById(questionId)
     findingCorrectAnswers(questionsData, optionsId,correctOptions)
   }
-  console.log(correctOptions);
   res.json({
     status: "ok",
     message: correctOptions
@@ -221,11 +220,9 @@ app.post("/student", async(req, res) => {
 function findingCorrectAnswers(questionsData, optionsId,correctOptions){
   let correctOption = questionsData.options.filter(value=> value._id===optionsId)[0];
     if(correctOption.isCorrect){
-      console.log("hello");
       correctOptions.push(1)
     }
     else{
-      console.log("hi");
       correctOptions.push(0)
     }
 

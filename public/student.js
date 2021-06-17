@@ -4,6 +4,7 @@ const alert = document.querySelector("#alert");
 let questions
 let index = 0
 let answersId = []
+let options = []
 let questionId
 takeTestBtn.addEventListener("click", showQuestions)
 
@@ -13,7 +14,6 @@ async function showQuestions(e){
     const response = await fetch("/student")
     const result = await response.json()
     if(result.status === "ok"){
-        console.log(result)
         questions = result.data
         questionData();
     }
@@ -24,11 +24,10 @@ function questionData(){
                 questionId = questions[index]._id
                 const questionsLength = questions.length
                 const question = questions[index].question
-                const a = questions[index].options[0]
-                const b = questions[index].options[1]
-                const c = questions[index].options[2]
-                const d = questions[index].options[3]
-                displayingValues(questionsLength, question, a, b, c, d)
+                for (let i = 0; i < questions[index].options.length; i++) {
+                    options.push(questions[index].options[i])
+                }
+                displayingValues(questionsLength, question)
 }
 
 const nextBtn = document.querySelector("#nextBtn")
@@ -59,8 +58,28 @@ function previousQuestion(e){
     questionData()
 }
 
+// randomizing the options on screen
+let individualOptions = []
+function randomValues(){
+    let option = []
+    for (let i = 0; i < 4; i++) {
+        option.push(options[i].option)
+    }
+    option.sort()
+    option.forEach(ele => {
+        for (let i = 0; i < 4; i++) {
+            if(ele === options[i].option){
+                individualOptions.push({
+                    option: ele,
+                    id: options[i]._id
+                })
+            }
+        }
+    })
+}
 // printing values on to screen
-function displayingValues(questionsLength, question, a, b, c, d){
+function displayingValues(questionsLength, question){
+    randomValues()
     const noOfQuestions = document.querySelector(".noOfQuestions")
     const questionPara = document.querySelector(".questionPara")
     const optionA = document.querySelector(".labelA")
@@ -69,14 +88,16 @@ function displayingValues(questionsLength, question, a, b, c, d){
     const optionD = document.querySelector(".labelD")
     noOfQuestions.innerText = `Total no of questions: ${questionsLength}`
     questionPara.innerHTML = question
-    optionA.innerHTML = a.a
-    optionA.id = a._id
-    optionB.innerHTML = b.b
-    optionB.id = b._id
-    optionC.innerHTML = c.c
-    optionC.id = c._id
-    optionD.innerHTML = d.d
-    optionD.id = d._id
+    optionA.innerHTML = individualOptions[0].option
+    optionA.id = individualOptions[0].id
+    optionB.innerHTML = individualOptions[1].option
+    optionB.id = individualOptions[1].id
+    optionC.innerHTML = individualOptions[2].option
+    optionC.id = individualOptions[2].id
+    optionD.innerHTML = individualOptions[3].option
+    optionD.id = individualOptions[3].id
+    options = []
+    individualOptions = []
     questionDiv.style.display = "block"
 }
     
@@ -106,6 +127,7 @@ function gettingSelectedOptions(questionId){
         }
     }
 }
+
 // sending answers to backend
 async function sendingAnswersToBackend(){
     console.log(answersId);
