@@ -1,14 +1,16 @@
 const express = require("express");
+// const passport = require("passport")
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+// const session = require("express-session")
 
 // requiring local modules
 const connectDB = require("./config/db");
 const User = require("./models/userModel");
 const question = require("./models/questionsModel");
-const { response } = require("express");
+// require("./config/oauth")(passport)
 
 // load Config
 dotenv.config({ path: "./config/config.env" });
@@ -32,6 +34,18 @@ app.use(express.urlencoded({extended: true}))
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+// express session
+// app.use(
+//   session({
+//     secret: "secret",
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
+// passport middleware
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // register route
 app.post("/register", async (req, res) => {
@@ -105,7 +119,7 @@ app.post("/login", async (req, res) => {
           );
           res.cookie("jwt",token,{
             expiresIn: maxAge
-          } )
+          } )        
           return res.json({
             status: "ok", 
             role: user.role
@@ -117,6 +131,37 @@ app.post("/login", async (req, res) => {
     }
   });
 });
+
+// Login with google route
+// app.get(
+//   "/auth/google",
+//   passport.authenticate("google", { scope: ["profile"] })
+//   );
+// Google auth call back
+// app.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     failureRedirect: "/login.html",
+//   }),
+//   (req, res) => {
+    // const maxAge = 24 * 60 * 60
+    // const token = jwt.sign(
+    //   {
+    //     username: displayName,
+    //   },
+    //   process.env.JWT_SECRET
+    // );
+    // res.cookie("jwt",token,{
+    //   expiresIn: maxAge
+    // } )  
+    // res.json(
+    //   {
+    //     status: "ok", 
+        // role: user.role
+      // }
+  //   );
+  // }
+  // );
 
 // Logout route
 app.get("/logout",(req, res)=>{
