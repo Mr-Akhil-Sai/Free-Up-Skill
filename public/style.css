@@ -56,6 +56,11 @@ body::before {
 
 
 @media (max-width: 450px) {
+  body::before {
+    display: block;
+    content: '';
+    height: 0px;
+  }
   .studentNumbers{
     margin-left: 2rem;
   }
@@ -68,4 +73,5 @@ body::before {
   .questionNumbers{
     margin-left: 2rem;
   }
+
 }
